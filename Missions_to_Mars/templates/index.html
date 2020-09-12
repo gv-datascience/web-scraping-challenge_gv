@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1 style="text-align: center;" style="color:blue;"> Mission to Mars</h1>
+      <br>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+    </div>
+ 
+    <div class="row">
+      <div class="col-md-12">
+        <h3 style="text-align: center;" > <b>Mars News </b></h3>
+        <h4> <b>{{ mars.Headlines }}</b></h6>
+        <p>{{ mars.Details }}</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-7">
+        <h3 style="text-align: center;"> <b>Featured Mars Image </b></h3>
+        <img src= "{{mars.Image}}" alt="jpl" class="img_responsive" width=100%>
+        <p></p>
+
+      </div>  
+    </div>  
+    
+    <div class="col-md-6">
+      <h3 style="text-align: center;"> <b>Mars Facts</b></h3>
+      <br>
+      <table>
+          {% for row in mars.Facts %}
+          <tr>
+              <td>{{row.Description}}</td>
+              <td>{{row.Values}}</td>
+          </tr>
+          {% endfor %}
+      </table>
+  </div>
+</div>
+
+<div class="row">
+  <h3 style="text-align: center;"> <b> Mars Hemishpere </b> </h3>
+  <div class="col-md-6">
+      <img src="{{ (mars and mars.Hemisphere[0]['img_url']) or "No data" }}"
+          alt=" hemisphere fig" class="img_responsive" width=100%>
+      <small>{{ (mars and mars.Hemisphere[0]['title']) or "No data" }}</small>
+  </div>
+  <div class="col-md-6">
+    <img src="{{ (mars and mars.Hemisphere[1]['img_url']) or "No data" }}"
+        alt=" hemisphere fig1" class="img_responsive" width=100%>
+    <small>{{ (mars and mars.Hemisphere[1]['title']) or "No data" }}</small>
+</div>
+</div>
+<!---------------------------------Hemisphere 2nd row images------------------------------------->
+<div class="row">
+<div class="col-md-6">
+    <img src="{{ (mars and mars.Hemisphere[2]['img_url']) or "No data" }}"
+        alt=" hemisphere fig3" class="img_responsive" width=100%>
+    <small>{{ (mars and mars.Hemisphere[2]['title']) or "No data" }}</small>
+</div>
+<div class="col-md-6">
+    <img src="{{ (mars and mars.Hemisphere[3]['img_url']) or "No data" }}"
+        alt=" hemisphere fig4" class="img_responsive" width=100%>
+    <small>{{ (nmars and mars.Hemisphere[3]['title']) or "Not data" }}</small>
+</div>
+</div>
+</body>
+
+</html>
